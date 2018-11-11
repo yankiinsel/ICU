@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app ="http://schemas.android.com/apk/res-auto"
     xmlns:tools ="http://schemas.android.com/tools"
-    tools:context="com.icu.yankiinsel.icu.HomeActivity">
+    tools:context="com.icu.yankiinsel.icu.Activities.HomeActivity">
     <item
         android:id ="@+id/action_home"
         android:orderInCategory="100"
@@ -20,7 +20,7 @@
         android:id ="@+id/action_matches"
         android:orderInCategory="102"
         android:title ="@string/action_matches"
-        app:showAsAction="never">
+        app:showAsAction="always">
     </item>
     <item
         android:id ="@+id/action_preferences"

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <com.jgabrielfreitas.core.BlurImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="360dp"

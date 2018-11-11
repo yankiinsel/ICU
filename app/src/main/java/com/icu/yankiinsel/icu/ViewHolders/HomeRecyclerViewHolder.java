@@ -1,16 +1,19 @@
-package com.icu.yankiinsel.icu;
+package com.icu.yankiinsel.icu.ViewHolders;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.icu.yankiinsel.icu.Model.User;
+import com.icu.yankiinsel.icu.R;
+import com.jgabrielfreitas.core.BlurImageView;
 
 public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     public TextView mUsernameTextView;
-    public ImageView mImageView;
+    public BlurImageView mImageView;
     public TextView mLocationTextView;
     public TextView mInterestsTextView;
     public Context context;
@@ -18,16 +21,17 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
     public HomeRecyclerViewHolder(View v) {
         super(v);
         mUsernameTextView = (TextView)  v.findViewById(R.id.tv_user_name);
-        mImageView = (ImageView) v.findViewById(R.id.imageView);
+        mImageView = (BlurImageView) v.findViewById(R.id.imageView);
         mLocationTextView = (TextView)  v.findViewById(R.id.tv_user_location);
         mInterestsTextView = (TextView)  v.findViewById(R.id.tv_user_interests);
         mInterestsTextView.setMovementMethod(new ScrollingMovementMethod());
         context = v.getContext();
     }
 
-    void bind(User user){
+    public void bind(User user){
         mUsernameTextView.setText(user.getNameAge());
         mImageView.setImageResource(context.getResources().getIdentifier(user.imageName, "drawable", context.getPackageName()));
+        mImageView.setBlur(25);
         mLocationTextView.setText(String.valueOf(user.location));
 
         for (String interest: user.interests) {

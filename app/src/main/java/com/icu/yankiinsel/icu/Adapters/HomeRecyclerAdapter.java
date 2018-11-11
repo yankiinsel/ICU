@@ -1,24 +1,24 @@
-package com.icu.yankiinsel.icu;
+package com.icu.yankiinsel.icu.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.icu.yankiinsel.icu.Model.User;
+import com.icu.yankiinsel.icu.R;
+import com.icu.yankiinsel.icu.ViewHolders.HomeRecyclerViewHolder;
 import java.util.List;
 
 public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHolder>  {
-    private List<User> mDataset;
+    private List<User> myDataset;
 
     public HomeRecyclerAdapter(List<User> myDataset) {
-        mDataset = myDataset;
+        this.myDataset = myDataset;
     }
 
     @Override
-    public HomeRecyclerViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
-
+    public HomeRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         int layoutIdForListItem = R.layout.list_element;
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -26,17 +26,16 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHo
         View view = inflater.inflate(layoutIdForListItem, parent, shouldAttachToParentImmediately);
         HomeRecyclerViewHolder viewHolder = new HomeRecyclerViewHolder(view);
         return viewHolder;
-
     }
 
     @Override
     public void onBindViewHolder(HomeRecyclerViewHolder holder, int position) {
 
-        holder.bind(mDataset.get(position));
+        holder.bind(myDataset.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return myDataset.size();
     }
 }

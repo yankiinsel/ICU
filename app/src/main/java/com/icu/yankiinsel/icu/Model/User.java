@@ -1,5 +1,4 @@
-package com.icu.yankiinsel.icu;
-
+package com.icu.yankiinsel.icu.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +11,9 @@ public class User {
     public int age;
     public Gender gender;
     public String imageName;
+
+    String profileUrl;
+
     public List<String> interests = new ArrayList<>();
 
     public User(String name, String surname, int age, Gender gender, String location) {
@@ -26,6 +28,12 @@ public class User {
         return name + ", " + age;
     }
 
+    public String getProfileUrl() {return profileUrl;}
 
+    public String getName() {return name;}
+
+    public String getUserId() {
+        return "";
+    }
 }
 

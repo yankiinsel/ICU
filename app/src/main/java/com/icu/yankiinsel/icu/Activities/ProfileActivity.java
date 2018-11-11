@@ -1,11 +1,14 @@
-package com.icu.yankiinsel.icu;
+package com.icu.yankiinsel.icu.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.icu.yankiinsel.icu.Model.Gender;
+import com.icu.yankiinsel.icu.Model.User;
+import com.icu.yankiinsel.icu.R;
 
 import java.util.Collections;
 

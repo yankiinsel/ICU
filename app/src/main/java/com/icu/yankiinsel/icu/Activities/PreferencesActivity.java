@@ -1,7 +1,9 @@
-package com.icu.yankiinsel.icu;
+package com.icu.yankiinsel.icu.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.icu.yankiinsel.icu.SettingsFragment;
 
 public class PreferencesActivity extends AppCompatActivity {
     @Override

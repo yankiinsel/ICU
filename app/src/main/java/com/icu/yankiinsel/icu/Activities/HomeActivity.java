@@ -1,16 +1,17 @@
-package com.icu.yankiinsel.icu;
+package com.icu.yankiinsel.icu.Activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
+import com.icu.yankiinsel.icu.Model.Gender;
+import com.icu.yankiinsel.icu.Model.User;
+import com.icu.yankiinsel.icu.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,6 +69,14 @@ public class HomeActivity extends AppCompatActivity {
         } else if (id == R.id.action_preferences) {
             try {
                 Intent k = new Intent(HomeActivity.this, PreferencesActivity.class);
+                startActivity(k);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (id == R.id.action_matches)
+        {
+            try {
+                Intent k = new Intent(HomeActivity.this, MatchesActivity.class);
                 startActivity(k);
             } catch (Exception e) {
                 e.printStackTrace();
