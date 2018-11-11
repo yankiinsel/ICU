@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    android:layout_width ="match_parent"
+    android:layout_height="match_parent">
+    <EditTextPreference
+        android:title ="Location"
+        android:key ="location"
+        android:defaultValue ="All"
+        android:inputType ="text"
+        android:singleLine ="true">
+    </EditTextPreference>
+
+    <ListPreference
+        android:title ="Gender Preference"
+        android:key ="gender"
+        android:defaultValue ="Female"
+        android:entryValues ="@array/pref_gender_values"
+        android:entries ="@array/pref_gender_preferences">
+        </ListPreference>
+
+</PreferenceScreen>

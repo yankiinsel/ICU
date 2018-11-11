@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ICU</string>
+    <string name="action_home">Home</string>
+    <string name="action_profile">Profile</string>
+    <string name="action_matches">Matches</string>
+    <string name="action_preferences">Preferences</string>
+</resources>
