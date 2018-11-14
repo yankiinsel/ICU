@@ -34,7 +34,9 @@ public class MatchesActivity extends AppCompatActivity implements ListItemClickL
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        userSet = Utils.getExampleUsers();
+        userSet = new ArrayList<User>();
+        userSet.add(Utils.getExampleUsers().get(1));
+        userSet.add(Utils.getExampleUsers().get(2));
 
         mAdapter = new MatchesRecyclerAdapter(userSet, this);
         mRecyclerView.setAdapter(mAdapter);
@@ -78,7 +80,9 @@ public class MatchesActivity extends AppCompatActivity implements ListItemClickL
     public void onListItemClick(int clickedItemIndex) {
         try {
             Intent k = new Intent(MatchesActivity.this, MessageListActivity.class);
+            k.putExtra("USER_ID", Utils.getExampleUsers().get(clickedItemIndex+1).getUserId());
             startActivity(k);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

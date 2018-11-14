@@ -16,15 +16,18 @@ import java.util.List;
 
 public class MessageListActivity extends AppCompatActivity {
     private RecyclerView mMessageRecycler;
-    private MessagesRecyclerAdapter mMessageAdapter;
+    private RecyclerView.Adapter mMessageAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<Message> messageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String userID= getIntent().getStringExtra("USER_ID");
+
         setContentView(R.layout.activity_message_list);
-        mMessageRecycler = (RecyclerView) findViewById(R.id.reyclerview_message_list);
+        mMessageRecycler = (RecyclerView) findViewById(R.id.recyclerview_message_list);
 
         mMessageRecycler.setHasFixedSize(false);
         mLayoutManager = new LinearLayoutManager(this);
@@ -33,7 +36,7 @@ public class MessageListActivity extends AppCompatActivity {
         messageList = new ArrayList<>();
         messageList = Utils.getExampleMessages();
 
-        mMessageAdapter = new MessagesRecyclerAdapter(messageList);
+        mMessageAdapter = new MessagesRecyclerAdapter(messageList, userID);
         mMessageRecycler.setAdapter(mMessageAdapter);
     }
 }

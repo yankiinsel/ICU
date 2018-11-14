@@ -11,17 +11,18 @@ public class User {
     public int age;
     public Gender gender;
     public String imageName;
-
+    private String id;
     String profileUrl;
 
     public List<String> interests = new ArrayList<>();
 
-    public User(String name, String surname, int age, Gender gender, String location) {
+    public User(String name, String surname, int age, Gender gender, String location, String id) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.gender = gender;
         this.location = location;
+        this.id = id;
     }
 
     public String getNameAge() {
@@ -33,7 +34,7 @@ public class User {
     public String getName() {return name;}
 
     public String getUserId() {
-        return "";
+        return id;
     }
 }
 

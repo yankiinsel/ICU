@@ -12,6 +12,7 @@ import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
 import com.icu.yankiinsel.icu.Model.Gender;
 import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.R;
+import com.icu.yankiinsel.icu.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,11 +35,9 @@ public class HomeActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         List<User> dataset = new ArrayList<>();
-        User user1 = new User("Mihriban", "Kocabiyik", 32, Gender.FEMALE, "Kadikoy");
-        User user2 = new User("Mefkure", "Cambaz", 24, Gender.FEMALE, "Besiktas");
 
-        user1.imageName = "girl1";
-        user2.imageName = "girl2";
+        User user1 = Utils.getExampleUsers().get(1);
+        User user2 = Utils.getExampleUsers().get(2);
 
         Collections.addAll(user1.interests, "Movies", "Video Games", "Music");
         Collections.addAll(user2.interests, "Travel", "Books", "Food");

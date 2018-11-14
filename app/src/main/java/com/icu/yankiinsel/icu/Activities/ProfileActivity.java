@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.icu.yankiinsel.icu.Model.Gender;
 import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.R;
+import com.icu.yankiinsel.icu.Utils;
 
 import java.util.Collections;
 
@@ -36,8 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void prepareViews() {
-        User user = new User("Mahmut", "Kutal", 35, Gender.MALE, "Sariyer");
-        user.imageName = "man1";
+        User user = Utils.getExampleUsers().get(0);
         Collections.addAll(user.interests, "Movies", "Video Games", "Music");
 
         mUsernameTextView.setText(user.getNameAge());

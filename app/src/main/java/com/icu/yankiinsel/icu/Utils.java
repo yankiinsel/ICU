@@ -35,24 +35,31 @@ public class Utils {
 
     private static void setExampleUsers()
     {
+        User user0 = new User("Mahmut", "Gulbayir", 27, Gender.MALE, "Sariyer", "WEOJNFDLS");
+        User user1 = new User("Mihriban", "Kocabiyik", 32, Gender.FEMALE, "Kadikoy", "SDAFHDUFIN");
+        User user2 = new User("Mefkure", "Cambaz", 24, Gender.FEMALE, "Besiktas", "jfhihqjkSD");
 
-        User user1 = new User("Mihriban", "Kocabiyik", 32, Gender.FEMALE, "Kadikoy");
-        User user2 = new User("Mefkure", "Cambaz", 24, Gender.FEMALE, "Besiktas");
-
+        user0.imageName = "man1";
         user1.imageName = "girl1";
         user2.imageName = "girl2";
 
+        userSet.add(user0);
         userSet.add(user1);
         userSet.add(user2);
     }
 
     private static void setExampleMessages()
     {
-        Message msg1 = new Message(userSet.get(0), userSet.get(1), "Hello dear friend!", 23122016);
-        Message msg2 = new Message(userSet.get(1), userSet.get(0), "Hello Ancuez!", 23122016);
+        Message msg1 = new Message(userSet.get(0), userSet.get(1), "Hi Mihriban!", 23122016);
+        Message msg2 = new Message(userSet.get(1), userSet.get(0), "Hello Mahmut!", 23122016);
+
+        Message msg3 = new Message(userSet.get(0), userSet.get(2), "Hello Mefkure!", 23122016);
+        Message msg4 = new Message(userSet.get(2), userSet.get(0), "I hv a byfrnd!", 23122016);
 
         messageSet.add(msg1);
         messageSet.add(msg2);
+        messageSet.add(msg3);
+        messageSet.add(msg4);
     }
 
     public static List<Message> getExampleMessages()
