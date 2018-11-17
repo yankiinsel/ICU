@@ -4,10 +4,16 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.icu.yankiinsel.icu.Activities.HomeActivity;
+import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
 import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.R;
+import com.icu.yankiinsel.icu.Utils;
 import com.jgabrielfreitas.core.BlurImageView;
 
 public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
@@ -17,6 +23,11 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
     public TextView mLocationTextView;
     public TextView mInterestsTextView;
     public Context context;
+    private ImageButton mBtnLike;
+    private ImageButton mBtnDidndLike;
+    private User mUser;
+    private int mPosition;
+    private RecyclerView.Adapter mAdapter;
 
     public HomeRecyclerViewHolder(View v) {
         super(v);
@@ -26,14 +37,52 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
         mInterestsTextView = (TextView)  v.findViewById(R.id.tv_user_interests);
         mInterestsTextView.setMovementMethod(new ScrollingMovementMethod());
         context = v.getContext();
+
+
+        mBtnLike = v.findViewById(R.id.btn_like);
+        mBtnDidndLike = v.findViewById(R.id.btn_didnt_like);
+
+        mBtnLike.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Animation pulse = AnimationUtils.loadAnimation(context, R.anim.pulse);
+                mBtnLike.startAnimation(pulse);
+
+                for (int i = 0; i < Utils.getLikedUsers().size(); i++) {
+                    if (Utils.getLikedUsers().get(i) == mUser) {
+                        return;
+                    }
+                }
+                Utils.getLikedUsers().add(mUser);
+            }
+        });
+
+        mBtnDidndLike.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Animation pulse = AnimationUtils.loadAnimation(context, R.anim.pulse);
+                mBtnDidndLike.startAnimation(pulse);
+
+                Utils.getExampleUsers().remove(mUser);
+                Utils.getLikedUsers().remove(mUser);
+                ((HomeRecyclerAdapter)mAdapter).refresh(mPosition);
+
+            }
+        });
     }
 
-    public void bind(User user){
+    public void bind(User user, int position, RecyclerView.Adapter adapter){
+        mUser = user;
+        mAdapter = adapter;
+        mPosition = position;
         mUsernameTextView.setText(user.getNameAge());
+        mImageView.setImageResource(android.R.color.transparent);
         mImageView.setImageResource(context.getResources().getIdentifier(user.imageName, "drawable", context.getPackageName()));
-        mImageView.setBlur(25);
+        mImageView.setBlur(5);
         mLocationTextView.setText(String.valueOf(user.location));
-
+        mInterestsTextView.setText("");
         for (String interest: user.interests) {
             mInterestsTextView.setText(interest + "\n"+ mInterestsTextView.getText());
         }

@@ -8,12 +8,15 @@ import com.icu.yankiinsel.icu.Model.Message;
 import com.icu.yankiinsel.icu.Model.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Utils {
 
     private static final List<User> userSet;
     private static final List<Message> messageSet;
+    private static final List<User> likedUserSet;
+
 
     static
     {
@@ -21,6 +24,7 @@ public class Utils {
         setExampleUsers();
         messageSet = new ArrayList<>();
         setExampleMessages();
+        likedUserSet = new ArrayList<>();
     }
 
     public static void displayRoundImageFromUrl(Context context, String url, ImageView imageView)
@@ -42,6 +46,11 @@ public class Utils {
         user0.imageName = "man1";
         user1.imageName = "girl1";
         user2.imageName = "girl2";
+
+        Collections.addAll(user0.interests, "Movies", "Video Games", "Music");
+        Collections.addAll(user1.interests, "Movies", "Video Games", "Music");
+        Collections.addAll(user2.interests, "Travel", "Books", "Food");
+
 
         userSet.add(user0);
         userSet.add(user1);
@@ -71,4 +80,10 @@ public class Utils {
     {
         return userSet;
     }
+
+    public static List<User> getLikedUsers()
+    {
+        return likedUserSet;
+    }
+
 }

@@ -7,6 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 
 import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
 import com.icu.yankiinsel.icu.Model.Gender;
@@ -30,22 +34,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
+
         mRecyclerView.setHasFixedSize(false);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        List<User> dataset = new ArrayList<>();
-
-        User user1 = Utils.getExampleUsers().get(1);
-        User user2 = Utils.getExampleUsers().get(2);
-
-        Collections.addAll(user1.interests, "Movies", "Video Games", "Music");
-        Collections.addAll(user2.interests, "Travel", "Books", "Food");
-
-        dataset.add(user1);
-        dataset.add(user2);
-
-        mAdapter = new HomeRecyclerAdapter(dataset);
+        mAdapter = new HomeRecyclerAdapter();
         mRecyclerView.setAdapter(mAdapter);
     }
 

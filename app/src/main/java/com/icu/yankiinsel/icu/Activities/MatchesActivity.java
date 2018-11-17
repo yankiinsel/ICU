@@ -35,8 +35,10 @@ public class MatchesActivity extends AppCompatActivity implements ListItemClickL
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         userSet = new ArrayList<User>();
-        userSet.add(Utils.getExampleUsers().get(1));
-        userSet.add(Utils.getExampleUsers().get(2));
+
+        for (int i = 0; i < Utils.getLikedUsers().size(); i++) {
+            userSet.add(Utils.getLikedUsers().get(i));
+        }
 
         mAdapter = new MatchesRecyclerAdapter(userSet, this);
         mRecyclerView.setAdapter(mAdapter);
