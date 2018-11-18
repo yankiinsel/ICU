@@ -1,6 +1,7 @@
 package com.icu.yankiinsel.icu.ViewHolders;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icu.yankiinsel.icu.Activities.HomeActivity;
 import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
@@ -55,6 +57,14 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
                     }
                 }
                 Utils.getLikedUsers().add(mUser);
+
+                Toast toast = Toast.makeText(context, mUser.getName() + " is added to your matches.",
+                        Toast.LENGTH_LONG);
+                View view = toast.getView();
+                view.getBackground().setColorFilter(context.getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
+                TextView text = view.findViewById(android.R.id.message);
+                text.setTextColor(context.getResources().getColor(R.color.white));
+                toast.show();
             }
         });
 
@@ -68,6 +78,14 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
                 Utils.getExampleUsers().remove(mUser);
                 Utils.getLikedUsers().remove(mUser);
                 ((HomeRecyclerAdapter)mAdapter).refresh(mPosition);
+
+                Toast toast = Toast.makeText(context, mUser.getName() + " is removed from your matches.",
+                        Toast.LENGTH_LONG);
+                View view = toast.getView();
+                view.getBackground().setColorFilter(context.getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
+                TextView text = view.findViewById(android.R.id.message);
+                text.setTextColor(context.getResources().getColor(R.color.white));
+                toast.show();
 
             }
         });
