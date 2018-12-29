@@ -40,8 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(false);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-
     }
 
     @Override
@@ -50,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         mAdapter = new HomeRecyclerAdapter();
 
-        FetchUserInfo task = new FetchUserInfo((HomeRecyclerAdapter)mAdapter, preferences);
+        FetchUserInfo task = new FetchUserInfo((HomeRecyclerAdapter)mAdapter, preferences, this);
         task.execute();
 
         mRecyclerView.setAdapter(mAdapter);

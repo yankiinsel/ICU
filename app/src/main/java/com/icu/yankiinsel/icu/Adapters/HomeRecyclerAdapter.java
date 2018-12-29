@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHolder>  {
-    private List<User> myDataset;
+    public List<User> myDataset;
     private String myUsers;
 
     public HomeRecyclerAdapter() {
@@ -57,11 +57,6 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHo
         myUsers = userData;
         try {
 
-            Gson gson = new Gson();
-            User[] users = gson.fromJson(userData, User[].class);
-
-            myDataset.clear();
-            myDataset = Arrays.asList(users);
             notifyDataSetChanged();
 
         } catch (Exception e) {

@@ -5,13 +5,13 @@ import java.util.List;
 
 public class User {
 
-    private String name;
-    private String surname;
+    public String name;
+    public String surname;
     public String location;
     public int age;
     public Gender gender;
     public String imageName;
-    private String id;
+    public String id;
     String profileUrl;
 
     public List<String> interests = new ArrayList<>();

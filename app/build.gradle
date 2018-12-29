@@ -29,5 +29,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.github.jgabrielfreitas:BlurImageView:1.0.1'
     implementation 'com.android.support:cardview-v7:28.0.0'
+    debugImplementation 'com.idescout.sql:sqlscout-server:4.1'
+    releaseImplementation 'com.idescout.sql:sqlscout-server-noop:4.1'
 
 }

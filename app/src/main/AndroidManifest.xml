@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.icu.yankiinsel.icu">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,21 +11,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Activities.LoginActivity"
-                  android:theme="@style/NoActionBar">
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".Activities.HomeActivity"/>
-        <activity android:label="@string/app_name" android:name=".Activities.ProfileActivity"/>
-        <activity android:label="Preferences" android:name=".Activities.PreferencesActivity" android:windowSoftInputMode="adjustResize" />
-        <activity android:label="@string/action_matches" android:name=".Activities.MatchesActivity" />
-        <activity android:label="Messages" android:name=".Activities.MessageListActivity" />
+        <activity android:name=".Activities.HomeActivity" />
+        <activity
+            android:name=".Activities.ProfileActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".Activities.PreferencesActivity"
+            android:label="Preferences"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activities.MatchesActivity"
+            android:label="@string/action_matches" />
+        <activity
+            android:name=".Activities.MessageListActivity"
+            android:label="Messages" />
 
+        <provider
+            android:name=".UserProvider"
+            android:authorities="com.icu.yankiinsel.icu"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>
