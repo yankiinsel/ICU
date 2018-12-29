@@ -19,7 +19,10 @@ import org.json.JSONStringer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+
+import static com.icu.yankiinsel.icu.Utils.dislikedUserSet;
 
 public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHolder>  {
     private List<User> myDataset;
@@ -60,21 +63,34 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHo
             Gson gson = new Gson();
             User[] users = gson.fromJson(userData, User[].class);
 
-            myDataset.clear();
-            myDataset = Arrays.asList(users);
-            notifyDataSetChanged();
+            //myDataset = Arrays.asList(users);
+
+           formNewDataset(users);
+           notifyDataSetChanged();
 
         } catch (Exception e) {
             Log.e("HomeActivity","Error: ", e);
         }
     }
 
-    public void refresh(int position) {
+    public void formNewDataset(User[] users) {
         myDataset.clear();
-        for (int i = 1; i < Utils.getExampleUsers().size(); i++) {
-            User user = Utils.getExampleUsers().get(i);
-            myDataset.add(user);
+        myDataset.addAll(Arrays.asList(users));
+        Iterator<User> iterator = myDataset.iterator();
+        while(iterator.hasNext())
+        {
+            User value = iterator.next();
+            for (User user: dislikedUserSet) {
+                if (user.getName().equals(value.getName()))
+                {
+                    iterator.remove();
+                }
+            }
         }
+    }
+
+    public void refresh(int position) {
+        formNewDataset(myDataset.toArray(new User[myDataset.size()]));
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, myDataset.size());
         notifyDataSetChanged();

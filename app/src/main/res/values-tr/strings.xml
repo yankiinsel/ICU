@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">ICU</string>
+    <string name="action_home">Ana Ekran</string>
+    <string name="action_profile">Profil</string>
+    <string name="action_matches">Eşleşmeler</string>
+    <string name="action_preferences">Tercihler</string>
+
+    <string name="location_preference">Yer Tercihim</string>
+    <string name="gender_preference">Cinsiyet Tercihim</string>
+    <string name="min_age">Min. Yaş</string>
+    <string name="max_age">Maks. Yaş</string>
+    <string name="email">E-posta</string>
+    <string name="password">Şifre</string>
+    <string name="signin">GİRİŞ</string>
+    <string name="add">Ekle</string>
+    <string name="messages">Mesajlar</string>
+    <string name="interests">İlgiler</string>
+    <string name="send">GÖNDER</string>
+    <string name="enter_message">Mesaj Yaz</string>
+    <string name="added"> eşleşmelerine eklendi.</string>
+    <string name="removed"> eşleşmelerinden çıkarıldı.</string>
+
+</resources>

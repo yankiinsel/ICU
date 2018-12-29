@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.icu.yankiinsel.icu.Adapters.MessagesRecyclerAdapter;
 import com.icu.yankiinsel.icu.Model.Message;
+import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.R;
 import com.icu.yankiinsel.icu.Utils;
 
@@ -24,7 +25,8 @@ public class MessageListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String userID= getIntent().getStringExtra("USER_ID");
+        int userIndex = getIntent().getIntExtra("USER_INDEX", 0);
+        User user = Utils.getLikedUsers().get(userIndex);
 
         setContentView(R.layout.activity_message_list);
         mMessageRecycler = (RecyclerView) findViewById(R.id.recyclerview_message_list);
@@ -36,7 +38,7 @@ public class MessageListActivity extends AppCompatActivity {
         messageList = new ArrayList<>();
         messageList = Utils.getExampleMessages();
 
-        mMessageAdapter = new MessagesRecyclerAdapter(messageList, userID);
+        mMessageAdapter = new MessagesRecyclerAdapter(user);
         mMessageRecycler.setAdapter(mMessageAdapter);
     }
 }

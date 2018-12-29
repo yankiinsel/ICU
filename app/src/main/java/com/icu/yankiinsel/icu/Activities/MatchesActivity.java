@@ -82,7 +82,7 @@ public class MatchesActivity extends AppCompatActivity implements ListItemClickL
     public void onListItemClick(int clickedItemIndex) {
         try {
             Intent k = new Intent(MatchesActivity.this, MessageListActivity.class);
-            k.putExtra("USER_ID", Utils.getExampleUsers().get(clickedItemIndex+1).getUserId());
+            k.putExtra("USER_INDEX", clickedItemIndex);
             startActivity(k);
 
         } catch (Exception e) {

@@ -16,6 +16,7 @@ public class Utils {
     private static final List<User> userSet;
     private static final List<Message> messageSet;
     private static final List<User> likedUserSet;
+    public static final List<User> dislikedUserSet;
 
 
     static
@@ -23,8 +24,8 @@ public class Utils {
         userSet = new ArrayList<>();
         setExampleUsers();
         messageSet = new ArrayList<>();
-        setExampleMessages();
         likedUserSet = new ArrayList<>();
+        dislikedUserSet = new ArrayList<>();
     }
 
     public static void displayRoundImageFromUrl(Context context, String url, ImageView imageView)
@@ -55,20 +56,6 @@ public class Utils {
         userSet.add(user0);
         userSet.add(user1);
         userSet.add(user2);
-    }
-
-    private static void setExampleMessages()
-    {
-        Message msg1 = new Message(userSet.get(0), userSet.get(1), "Hi Mihriban!", 23122016);
-        Message msg2 = new Message(userSet.get(1), userSet.get(0), "Hello Mahmut!", 23122016);
-
-        Message msg3 = new Message(userSet.get(0), userSet.get(2), "Hello Mefkure!", 23122016);
-        Message msg4 = new Message(userSet.get(2), userSet.get(0), "I hv a byfrnd!", 23122016);
-
-        messageSet.add(msg1);
-        messageSet.add(msg2);
-        messageSet.add(msg3);
-        messageSet.add(msg4);
     }
 
     public static List<Message> getExampleMessages()

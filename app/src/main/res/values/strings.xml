@@ -4,4 +4,20 @@
     <string name="action_profile">Profile</string>
     <string name="action_matches">Matches</string>
     <string name="action_preferences">Preferences</string>
+
+    <string name="location_preference">Location Preference</string>
+    <string name="gender_preference">Gender Preference</string>
+    <string name="min_age">Min. Age</string>
+    <string name="max_age">Max. Age</string>
+    <string name="email">Email</string>
+    <string name="password">password</string>
+    <string name="signin">SIGN IN</string>
+    <string name="add">Add</string>
+    <string name="messages">Messages</string>
+    <string name="interests">Interests</string>
+    <string name="send">SEND</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="added"> is added to your matches.</string>
+    <string name="removed"> is removed from your matches.</string>
+
 </resources>

@@ -82,7 +82,7 @@
                     android:layout_width="96dp"
                     android:layout_height="48dp"
                     android:drawableLeft="@drawable/ic_add"
-                    android:text=" Add"
+                    android:text="@string/add"
                     android:padding="16dp"
                     android:background="@color/green"
                     android:textColor="@color/white"
@@ -91,7 +91,7 @@
 
                 <EditText
                     android:id="@+id/edit_interest"
-                    android:hint="Interest"
+                    android:hint="@string/interests"
                     android:backgroundTint="@color/green"
                     android:layout_gravity="center"
                     android:layout_marginLeft="16dp"
@@ -110,7 +110,7 @@
                 android:layout_width ="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily ="sans-serif"
-                android:hint="Interests"
+                android:hint="@string/interests"
                 android:textSize ="24sp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"

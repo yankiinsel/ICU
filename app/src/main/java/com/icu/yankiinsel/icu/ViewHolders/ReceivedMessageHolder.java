@@ -27,10 +27,10 @@ public class ReceivedMessageHolder extends RecyclerView.ViewHolder {
         messageText.setText(message.getMessage());
 
         // Format the stored timestamp into a readable String using method.
-        timeText.setText(Utils.formatDateTime(message.getCreatedAt()));
-        nameText.setText(message.getSender().getName());
+        timeText.setText(Utils.formatDateTime(3122016));
+        nameText.setText(message.getUser().getName());
 
         // Insert the profile image from the URL into the ImageView.
-        Utils.displayRoundImageFromUrl(context, message.getSender().getProfileUrl(), profileImage);
+        Utils.displayRoundImageFromUrl(context, message.getUser().getProfileUrl(), profileImage);
     }
 }

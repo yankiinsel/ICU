@@ -1,5 +1,6 @@
 package com.icu.yankiinsel.icu.ViewHolders;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
@@ -57,8 +58,11 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
                     }
                 }
                 Utils.getLikedUsers().add(mUser);
+                Utils.dislikedUserSet.add(mUser);
 
-                Toast toast = Toast.makeText(context, mUser.getName() + " is added to your matches.",
+                ((HomeRecyclerAdapter)mAdapter).refresh(mPosition);
+
+                Toast toast = Toast.makeText(context, mUser.getName() + " " +  context.getResources().getString(R.string.added),
                         Toast.LENGTH_LONG);
                 View view = toast.getView();
                 view.getBackground().setColorFilter(context.getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
@@ -75,11 +79,12 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
                 Animation pulse = AnimationUtils.loadAnimation(context, R.anim.pulse);
                 mBtnDidndLike.startAnimation(pulse);
 
-                Utils.getExampleUsers().remove(mUser);
-                Utils.getLikedUsers().remove(mUser);
+                Utils.dislikedUserSet.add(mUser);
+
                 ((HomeRecyclerAdapter)mAdapter).refresh(mPosition);
 
-                Toast toast = Toast.makeText(context, mUser.getName() + " is removed from your matches.",
+
+                Toast toast = Toast.makeText(context, mUser.getName() + " " + context.getResources().getString(R.string.removed),
                         Toast.LENGTH_LONG);
                 View view = toast.getView();
                 view.getBackground().setColorFilter(context.getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
@@ -97,7 +102,7 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
         mPosition = position;
         mUsernameTextView.setText(user.getNameAge());
         mImageView.setImageResource(android.R.color.transparent);
-        mImageView.setImageResource(context.getResources().getIdentifier(user.imageName, "drawable", context.getPackageName()));
+        mImageView.setImageResource(context.getResources().getIdentifier(mUser.imageName, "drawable", context.getPackageName()));
         mImageView.setBlur(5);
         mLocationTextView.setText(String.valueOf(user.location));
         mInterestsTextView.setText("");
