@@ -18,8 +18,8 @@
     <string-array name="pref_location_preferences">
         <item>All</item>
         <item>Arnavutkoy</item>
-        <item>Avcılar</item>
-        <item>Bagcılar</item>
+        <item>Avcilar</item>
+        <item>Bagcilar</item>
         <item>Bahselievler</item>
         <item>Bakirkoy</item>
         <item>Basaksehir</item>
@@ -34,8 +34,8 @@
     <string-array name="pref_location_values">
         <item>All</item>
         <item>Arnavutkoy</item>
-        <item>Avcılar</item>
-        <item>Bagcılar</item>
+        <item>Avcilar</item>
+        <item>Bagcilar</item>
         <item>Bahselievler</item>
         <item>Bakirkoy</item>
         <item>Basaksehir</item>

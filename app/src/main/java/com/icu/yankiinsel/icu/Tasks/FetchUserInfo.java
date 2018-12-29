@@ -36,37 +36,31 @@ public class FetchUserInfo extends AsyncTask<String, Void, String> {
         String minAgePref = mPreferences.getString("minAge","");
         String maxAgePref = mPreferences.getString("maxAge","");
 
-        final String FORECAST_BASE_URL = "https://ICU-api.now.sh/user?";
+        final String BASE_URL = "https://ICU-api.now.sh/user?";
         final String genderParam = "gender";
         final String locationParam = "location";
         final String minAgeParam = "minAge";
         final String maxAgeParam = "maxAge";
 
-        Uri builtUri;
+        String uriString;
+        StringBuilder extra = new StringBuilder();
+        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
+                .appendQueryParameter(minAgeParam , minAgePref)
+                .appendQueryParameter(maxAgeParam , maxAgePref)
+                .build();
 
-        if(locationPref.equals("All"))
-        {
-            builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
-                    .appendQueryParameter(genderParam , genderPref)
-                    .appendQueryParameter(minAgeParam , minAgePref)
-                    .appendQueryParameter(maxAgeParam , maxAgePref)
-                    .build();
-
-            Log.v("HomeActivity", builtUri.toString());
-        }else{
-             builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
-                    .appendQueryParameter(genderParam , genderPref)
-                    .appendQueryParameter(locationParam , locationPref)
-                    .appendQueryParameter(minAgeParam , minAgePref)
-                    .appendQueryParameter(maxAgeParam , maxAgePref)
-                    .build();
-            Log.v("HomeActivity", builtUri.toString());
-
+        if(!locationPref.equals("All")) {
+            extra.append("&" + locationParam + "=" + locationPref);
+        }
+        if(!genderPref.equals("All")){
+            extra.append("&" + genderParam + "=" + genderPref);
         }
 
+        uriString = builtUri.toString() + extra;
+        Log.v("HomeActivity", uriString);
 
         try{
-            URL userURL = new URL(builtUri.toString());
+            URL userURL = new URL(uriString);
             urlConnection  = (HttpURLConnection) userURL.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
