@@ -3,13 +3,6 @@
     xmlns:android = "http://schemas.android.com/apk/res/android"
     android:layout_width ="match_parent"
     android:layout_height="match_parent">
-    <EditTextPreference
-        android:title ="Location"
-        android:key ="location"
-        android:defaultValue ="All"
-        android:inputType ="text"
-        android:singleLine ="true">
-    </EditTextPreference>
 
     <ListPreference
         android:title ="Gender Preference"
@@ -18,5 +11,30 @@
         android:entryValues ="@array/pref_gender_values"
         android:entries ="@array/pref_gender_preferences">
         </ListPreference>
+
+    <ListPreference
+        android:title ="Location Preference"
+        android:key ="location"
+        android:defaultValue ="Kadikoy"
+        android:entryValues ="@array/pref_location_values"
+        android:entries ="@array/pref_location_preferences">
+    </ListPreference>
+
+    <EditTextPreference
+        android:title ="Min Age"
+        android:key ="minAge"
+        android:defaultValue ="18"
+        android:inputType ="text"
+        android:singleLine ="true">
+    </EditTextPreference>
+
+    <EditTextPreference
+        android:title ="Max Age"
+        android:key ="maxAge"
+        android:defaultValue ="40"
+        android:inputType ="text"
+        android:singleLine ="true">
+    </EditTextPreference>
+
 
 </PreferenceScreen>

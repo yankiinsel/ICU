@@ -7,10 +7,46 @@
         <item>All</item>
 
     </string-array>
+
     <string-array name="pref_gender_values">
         <item>Male</item>
         <item>Female</item>
         <item>Attack Helicopter</item>
         <item>All</item>
     </string-array>
+
+    <string-array name="pref_location_preferences">
+        <item>All</item>
+        <item>Arnavutkoy</item>
+        <item>Avcılar</item>
+        <item>Bagcılar</item>
+        <item>Bahselievler</item>
+        <item>Bakirkoy</item>
+        <item>Basaksehir</item>
+        <item>Bayrampasa</item>
+        <item>Besiktas</item>
+        <item>Beylikduzu</item>
+        <item>Beyoglu</item>
+        <item>Sariyer</item>
+        <item>Tuzla</item>
+    </string-array>
+
+    <string-array name="pref_location_values">
+        <item>All</item>
+        <item>Arnavutkoy</item>
+        <item>Avcılar</item>
+        <item>Bagcılar</item>
+        <item>Bahselievler</item>
+        <item>Bakirkoy</item>
+        <item>Basaksehir</item>
+        <item>Bayrampasa</item>
+        <item>Besiktas</item>
+        <item>Beylikduzu</item>
+        <item>Beyoglu</item>
+        <item>Sariyer</item>
+        <item>Tuzla</item>
+    </string-array>
+
+
+
 </resources>

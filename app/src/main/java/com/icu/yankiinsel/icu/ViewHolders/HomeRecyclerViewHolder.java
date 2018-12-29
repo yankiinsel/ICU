@@ -101,8 +101,10 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
         mImageView.setBlur(5);
         mLocationTextView.setText(String.valueOf(user.location));
         mInterestsTextView.setText("");
-        for (String interest: user.interests) {
-            mInterestsTextView.setText(interest + "\n"+ mInterestsTextView.getText());
+        if (user.interests != null) {
+            for (String interest: user.interests) {
+                mInterestsTextView.setText(interest + "\n" + mInterestsTextView.getText());
+            }
         }
     }
 
