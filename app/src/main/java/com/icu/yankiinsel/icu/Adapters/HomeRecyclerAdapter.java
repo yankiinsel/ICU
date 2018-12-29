@@ -27,10 +27,6 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHo
 
     public HomeRecyclerAdapter() {
         myDataset = new ArrayList<>();
-        for (int i = 1; i < Utils.getExampleUsers().size(); i++) {
-            User user = Utils.getExampleUsers().get(i);
-            myDataset.add(user);
-        }
     }
 
     @Override
