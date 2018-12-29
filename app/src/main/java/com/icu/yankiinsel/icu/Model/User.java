@@ -9,14 +9,14 @@ public class User {
     public String surname;
     public String location;
     public int age;
-    public Gender gender;
+    public String gender;
     public String imageName;
     public String id;
     String profileUrl;
 
     public List<String> interests = new ArrayList<>();
 
-    public User(String name, String surname, int age, Gender gender, String location, String id) {
+    public User(String name, String surname, int age, String gender, String location, String id) {
         this.name = name;
         this.surname = surname;
         this.age = age;

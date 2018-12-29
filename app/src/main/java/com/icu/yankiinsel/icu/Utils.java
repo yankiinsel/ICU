@@ -3,7 +3,6 @@ package com.icu.yankiinsel.icu;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.icu.yankiinsel.icu.Model.Gender;
 import com.icu.yankiinsel.icu.Model.Message;
 import com.icu.yankiinsel.icu.Model.User;
 
@@ -39,9 +38,9 @@ public class Utils {
 
     private static void setExampleUsers()
     {
-        User user0 = new User("Mahmut", "Gulbayir", 27, Gender.MALE, "Sariyer", "WEOJNFDLS");
-        User user1 = new User("Mihriban", "Kocabiyik", 32, Gender.FEMALE, "Kadikoy", "SDAFHDUFIN");
-        User user2 = new User("Mefkure", "Cambaz", 24, Gender.FEMALE, "Besiktas", "jfhihqjkSD");
+        User user0 = new User("Mahmut", "Gulbayir", 27, "MALE", "Sariyer", "WEOJNFDLS");
+        User user1 = new User("Mihriban", "Kocabiyik", 32, "FEMALE", "Kadikoy", "SDAFHDUFIN");
+        User user2 = new User("Mefkure", "Cambaz", 24, "MALE", "Besiktas", "jfhihqjkSD");
 
         user0.imageName = "man1";
         user1.imageName = "girl1";

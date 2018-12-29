@@ -3,6 +3,7 @@ package com.icu.yankiinsel.icu;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class UserDBHelper extends SQLiteOpenHelper {
 
@@ -17,14 +18,16 @@ public class UserDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
          final String SQL_CREATE_USER_TABLE = "CREATE TABLE " + UserContract.UserEntry.TABLE_NAME + " (" +
-                UserContract.UserEntry._ID + " INTEGER PRIMARY KEY," +
-                UserContract.UserEntry.COLUMN_USER_NAME + " TEXT NOT NULL, " +
-                UserContract.UserEntry.COLUMN_USER_SURNAME + " TEXT NOT NULL, " +
-                UserContract.UserEntry.COLUMN_USER_AGE + " INTEGER NOT NULL, " +
-                " FOREIGN KEY (" + UserContract.UserEntry.COLUMN_GENDER_KEY + ") REFERENCES " +
-                UserContract.GenderEntry.TABLE_NAME + " (" + UserContract.GenderEntry._ID + "), " +
-                " FOREIGN KEY (" + UserContract.UserEntry.COLUMN_LOCATION_KEY + ") REFERENCES " +
-                UserContract.LocationEntry.TABLE_NAME + " (" + UserContract.LocationEntry._ID + "));";
+                 UserContract.UserEntry._ID + " INTEGER PRIMARY KEY," +
+                 UserContract.UserEntry.COLUMN_USER_NAME + " TEXT NOT NULL, " +
+                 UserContract.UserEntry.COLUMN_USER_SURNAME + " TEXT NOT NULL, " +
+                 UserContract.UserEntry.COLUMN_USER_AGE + " INTEGER NOT NULL, " +
+                 UserContract.UserEntry.COLUMN_GENDER_KEY + " INTEGER NOT NULL, " +
+                 UserContract.UserEntry.COLUMN_LOCATION_KEY + " INTEGER NOT NULL, " +
+                 " FOREIGN KEY (" + UserContract.UserEntry.COLUMN_GENDER_KEY + ") REFERENCES " +
+                 UserContract.GenderEntry.TABLE_NAME + " (" + UserContract.GenderEntry._ID + "), " +
+                 " FOREIGN KEY (" + UserContract.UserEntry.COLUMN_LOCATION_KEY + ") REFERENCES " +
+                 UserContract.LocationEntry.TABLE_NAME + " (" + UserContract.LocationEntry._ID + "));";
 
          final String SQL_CREATE_GENDER_TABLE =
                 "CREATE TABLE " + UserContract.GenderEntry.TABLE_NAME
@@ -37,8 +40,12 @@ public class UserDBHelper extends SQLiteOpenHelper {
                         + UserContract.LocationEntry.COLUMN_LOCATION + " TEXT NOT NULL);";
 
         sqLiteDatabase.execSQL(SQL_CREATE_GENDER_TABLE);
+        Log.v("here::",SQL_CREATE_GENDER_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_LOCATION_TABLE);
+        Log.v("here::",SQL_CREATE_LOCATION_TABLE);
+
         sqLiteDatabase.execSQL(SQL_CREATE_USER_TABLE);
+        Log.v("here::",SQL_CREATE_USER_TABLE);
 
 
     }

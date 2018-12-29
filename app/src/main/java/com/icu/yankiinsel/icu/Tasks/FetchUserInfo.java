@@ -12,11 +12,9 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
-import com.icu.yankiinsel.icu.Model.Gender;
 import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.UserContract;
 
-import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -171,17 +169,25 @@ public class FetchUserInfo extends AsyncTask<String, Void, String> {
 
         User[] users = getUserDataFromJson(userString);
 
-
         for(int i = 0; i < users.length; i++){
-            long userId = addUser(users[i].name, users[i].surname, users[i].age,1,users[i].location );
+            int genderInput;
+            if(users[i].gender.equals("Male"))
+            {
+                genderInput = 1;
+            }else if (users[i].gender.equals("Female"))
+            {
+                genderInput = 2;
+            }else if (users[i].gender.equals("Attack Helicopter"))
+            {
+                genderInput = 3;
+            }else{
+                genderInput = 4;
+            }
+            long userId = addUser(users[i].name, users[i].surname, users[i].age,genderInput,users[i].location );
         }
-
-
 
         mAdapter.myDataset.clear();
         mAdapter.myDataset = Arrays.asList(users);
-
-
 
         mAdapter.setUserData(userString);
     }

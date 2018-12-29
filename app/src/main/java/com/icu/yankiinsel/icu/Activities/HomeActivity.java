@@ -1,5 +1,6 @@
 package com.icu.yankiinsel.icu.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -9,21 +10,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 
 import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
-import com.icu.yankiinsel.icu.Model.Gender;
-import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.R;
 import com.icu.yankiinsel.icu.Tasks.FetchUserInfo;
-import com.icu.yankiinsel.icu.Utils;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -40,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(false);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
     }
 
     @Override
