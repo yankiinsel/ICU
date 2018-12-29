@@ -53,7 +53,7 @@ public class FetchUserInfo extends AsyncTask<String, Void, String> {
 
         Uri builtUri;
 
-        if(locationParam == "All")
+        if(locationPref.equals("All"))
         {
             builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
                     .appendQueryParameter(genderParam , genderPref)
