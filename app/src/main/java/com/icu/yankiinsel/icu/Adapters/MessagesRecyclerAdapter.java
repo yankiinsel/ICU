@@ -19,45 +19,33 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
     private List<Message> mMessageList;
-    private List<Message> thisMessageList;
+    private List<String> thisMessageList;
 
-    private String oppositeUserID;
-    private String userID = Utils.getExampleUsers().get(0).getUserId();
+    private User oppositeUser;
+    private User thisUser = Utils.getExampleUsers().get(0);
 
-    public MessagesRecyclerAdapter(List<Message> messageList, String userID) {
-        this.mMessageList = messageList;
-        this.oppositeUserID = userID;
+    public MessagesRecyclerAdapter(User user) {
+        thisMessageList = new ArrayList<>();
+        thisMessageList.add("Hello");
+        thisMessageList.add("slm");
+        this.oppositeUser = user;
     }
 
     @Override
     public int getItemCount() {
-        thisMessageList = new ArrayList<>();
-        for (int i = 0; i<mMessageList.size(); i++) {
-            if (((mMessageList.get(i).getSender().getUserId().equals(oppositeUserID) ) &&
-                    (mMessageList.get(i).getReciever().getUserId().equals(userID))) ||
-                    ((mMessageList.get(i).getReciever().getUserId().equals(oppositeUserID)) &&
-                            (mMessageList.get(i).getSender().getUserId().equals(userID)))) {
-                thisMessageList.add(mMessageList.get(i));
-            }
-        }
         return thisMessageList.size();
     }
 
     // Determines the appropriate ViewType according to the sender of the message.
     @Override
     public int getItemViewType(int position) {
-        Message message = (Message) thisMessageList.get(position);
 
-        if ((message.getSender().getUserId().equals(Utils.getExampleUsers().get(0).getUserId()))
-            && message.getReciever().getUserId().equals(oppositeUserID)) {
+
+        if (position == 1) {
             // If the current user is the sender of the message
             return VIEW_TYPE_MESSAGE_SENT;
-        } else if ((message.getReciever().getUserId().equals(Utils.getExampleUsers().get(0).getUserId()))
-                && message.getSender().getUserId().equals(oppositeUserID)){
-            // If some other user sent the message
-            return VIEW_TYPE_MESSAGE_RECEIVED;
         }
-        return VIEW_TYPE_MESSAGE_SENT;
+        return VIEW_TYPE_MESSAGE_RECEIVED;
     }
 
     // Inflates the appropriate layout according to the ViewType.
@@ -81,14 +69,14 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     // Passes the message object to a ViewHolder so that the contents can be bound to UI.
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Message message = (Message) thisMessageList.get(position);
+        String message = (String) thisMessageList.get(position);
 
         switch (holder.getItemViewType()) {
             case VIEW_TYPE_MESSAGE_SENT:
-                ((SentMessageHolder) holder).bind(message);
+                ((SentMessageHolder) holder).bind(new Message(thisUser, message));
                 break;
             case VIEW_TYPE_MESSAGE_RECEIVED:
-                ((ReceivedMessageHolder) holder).bind(message);
+                ((ReceivedMessageHolder) holder).bind(new Message(oppositeUser, message));
         }
     }
 }

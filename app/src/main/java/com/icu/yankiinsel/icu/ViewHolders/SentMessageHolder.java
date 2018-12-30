@@ -24,6 +24,6 @@ public class SentMessageHolder extends RecyclerView.ViewHolder {
         messageText.setText(message.getMessage());
 
         // Format the stored timestamp into a readable String using method.
-        timeText.setText(Utils.formatDateTime(message.getCreatedAt()));
+        timeText.setText(Utils.formatDateTime(3122016));
     }
 }

@@ -3,18 +3,24 @@ package com.icu.yankiinsel.icu.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.icu.yankiinsel.icu.Model.Gender;
 import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.R;
 import com.icu.yankiinsel.icu.Utils;
+
+import java.util.Collections;
 
 public class ProfileActivity extends AppCompatActivity {
 

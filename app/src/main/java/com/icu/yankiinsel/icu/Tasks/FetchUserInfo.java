@@ -15,6 +15,7 @@ import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
 import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.UserContract;
 
+import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,39 +38,35 @@ public class FetchUserInfo extends AsyncTask<String, Void, String> {
         mResolver = mContext.getContentResolver();
     }
 
-    public long addUser(String name, String surname, int age, int gender, String location){
+    public long addUser(String name, String surname, int age, int genderId, String location, String image_string){
 
-        String[] projectedColumns = {UserContract.UserEntry._ID};
-        String selectedString = UserContract.UserEntry.COLUMN_USER_NAME + "=?";
-        String locationSetting = mPreferences.getString("location","");;
-        String[] selectionArgs = {locationSetting};
         Cursor userCursor;
-        long locationId;
+        Long userId;
+
+
         userCursor = mResolver.query(UserContract.UserEntry.CONTENT_URI,
-                projectedColumns,
-                selectedString,
-                selectionArgs,
+                null,
+                null,
+                null,
                 null);
 
         if (userCursor.moveToFirst()){
-            int userIdIndex = userCursor.getColumnIndex(UserContract.UserEntry._ID);
-            locationId = userCursor.getLong(userIdIndex);
+            int locationIdIndex = userCursor.getColumnIndex(UserContract.UserEntry._ID);
+            userId = userCursor.getLong(locationIdIndex);
         }
-        else{
+        else {
             Uri insertedUri;
             ContentValues userValues = new ContentValues();
-
-            userValues.put(UserContract.UserEntry.COLUMN_USER_NAME, name);
-            userValues.put(UserContract.UserEntry.COLUMN_USER_SURNAME, surname);
-            userValues.put(UserContract.UserEntry.COLUMN_USER_AGE, age);
-            userValues.put(UserContract.UserEntry.COLUMN_GENDER_KEY, gender);
-            userValues.put(UserContract.UserEntry.COLUMN_LOCATION_KEY, location);
-
+            userValues.put(UserContract.UserEntry.COLUMN_NAME, name);
+            userValues.put(UserContract.UserEntry.COLUMN_SURNAME, surname);
+            userValues.put(UserContract.UserEntry.COLUMN_AGE, age);
+            userValues.put(UserContract.UserEntry.COLUMN_GENDER_ID, genderId);
+            userValues.put(UserContract.UserEntry.COLUMN_LOCATION, location);
+            userValues.put(UserContract.UserEntry.COLUMN_IMAGE, image_string);
             insertedUri = mResolver.insert(UserContract.UserEntry.CONTENT_URI, userValues);
-
-            locationId = ContentUris.parseId(insertedUri);
+            userId = ContentUris.parseId(insertedUri);
         }
-        return locationId;
+        return userId;
     }
 
     @Override
@@ -154,20 +151,18 @@ public class FetchUserInfo extends AsyncTask<String, Void, String> {
         return null;
     }
 
-    private User[] getUserDataFromJson(String userJsonStr){
+    private void getUserDataFromJson(String userJsonStr){
 
-        Log.v("HomeActivity", userJsonStr);
-
-        Gson gson = new Gson();
-
-        return gson.fromJson(userJsonStr, User[].class);
     }
 
     @Override
     protected void onPostExecute(String userString) {
         super.onPostExecute(userString);
 
-        User[] users = getUserDataFromJson(userString);
+        Gson gson = new Gson();
+        User[] users = gson.fromJson(userString, User[].class);;
+
+        Log.v("HomeActivity", userString);
 
         for(int i = 0; i < users.length; i++){
             int genderInput;
@@ -183,7 +178,7 @@ public class FetchUserInfo extends AsyncTask<String, Void, String> {
             }else{
                 genderInput = 4;
             }
-            long userId = addUser(users[i].name, users[i].surname, users[i].age,genderInput,users[i].location );
+            long userId = addUser(users[i].name, users[i].surname, users[i].age,genderInput,users[i].location, users[i].imageName);
         }
 
         mAdapter.myDataset.clear();

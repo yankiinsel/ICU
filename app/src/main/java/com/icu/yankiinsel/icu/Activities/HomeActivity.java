@@ -1,8 +1,8 @@
 package com.icu.yankiinsel.icu.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,10 +10,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 
 import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
+import com.icu.yankiinsel.icu.Model.Gender;
+import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.R;
 import com.icu.yankiinsel.icu.Tasks.FetchUserInfo;
+import com.icu.yankiinsel.icu.UserContract;
+import com.icu.yankiinsel.icu.Utils;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -31,13 +43,22 @@ public class HomeActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mAdapter = new HomeRecyclerAdapter();
+
+        Cursor cur = getContentResolver().query(UserContract.UserEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+
+
+        mAdapter = new HomeRecyclerAdapter(cur);
 
         FetchUserInfo task = new FetchUserInfo((HomeRecyclerAdapter)mAdapter, preferences, this);
         task.execute();

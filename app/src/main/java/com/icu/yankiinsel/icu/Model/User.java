@@ -1,5 +1,7 @@
 package com.icu.yankiinsel.icu.Model;
 
+import android.database.Cursor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class User {
     public String gender;
     public String imageName;
     public String id;
-    String profileUrl;
+    public String profileUrl;
 
     public List<String> interests = new ArrayList<>();
 
@@ -37,5 +39,32 @@ public class User {
         return id;
     }
 
+    public static User populatePerson(Cursor cursor) {
+        try {
+            int idIndex = cursor.getColumnIndexOrThrow("_id");
+            int nameIndex = cursor.getColumnIndexOrThrow("name");
+            int surnameIndex = cursor.getColumnIndexOrThrow("surname");
+            int ageIndex = cursor.getColumnIndexOrThrow("age");
+            int genderIndex = cursor.getColumnIndexOrThrow("gender");
+            int locationIndex = cursor.getColumnIndexOrThrow("location");
+            int imageIndex = cursor.getColumnIndexOrThrow("imageName");
+
+            long id = cursor.getLong(idIndex);
+            String name = cursor.getString(nameIndex);
+            String surname = cursor.getString(surnameIndex);
+            int age = cursor.getInt(ageIndex);
+            String gender = cursor.getString(genderIndex);
+            String location = cursor.getString(locationIndex);
+            String image = cursor.getString(imageIndex);
+
+
+            User user = new User(name, surname, age, gender, location, Long.toString(id));
+            user.imageName = image;
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
 
