@@ -10,7 +10,7 @@ import android.net.Uri;
 public class UserProvider extends ContentProvider {
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
-    private UserDbHelper mOpenHelper;
+    private UserDBHelper mOpenHelper;
 
     public static final int USER = 100;
 
@@ -60,7 +60,7 @@ public class UserProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        mOpenHelper = new UserDbHelper(getContext());
+        mOpenHelper = new UserDBHelper(getContext());
         return true;
     }
 
