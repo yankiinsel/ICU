@@ -20,4 +20,8 @@
     <string name="added"> eşleşmelerine eklendi.</string>
     <string name="removed"> eşleşmelerinden çıkarıldı.</string>
 
+    <string name="new_matches_title">Yeni Eşleşmeler</string>
+    <string name="new_messages_title">Yeni Mesajlar!</string>
+    <string name="new_matches">Yeni eşleşmelerin var!</string>
+    <string name="new_messages">Eşleşmelerinden yeni mesajlar var!!</string>
 </resources>

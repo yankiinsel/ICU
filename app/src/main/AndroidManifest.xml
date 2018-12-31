@@ -26,6 +26,10 @@
         <activity android:label="@string/action_matches" android:name=".Activities.MatchesActivity" />
         <activity android:label="@string/messages" android:name=".Activities.MessageListActivity" />
 
+        <service
+            android:name="ReminderIntentService"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

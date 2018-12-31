@@ -20,4 +20,11 @@
     <string name="added"> is added to your matches.</string>
     <string name="removed"> is removed from your matches.</string>
 
+    <string name="new_matches_title">New Matches</string>
+    <string name="new_messages_title">New Messages</string>
+    <string name="new_matches">You have some new matches in your area!</string>
+    <string name="new_messages">You have new messages from your matches!</string>
+
+
+
 </resources>

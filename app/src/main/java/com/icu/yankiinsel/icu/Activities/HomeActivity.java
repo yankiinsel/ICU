@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
 import com.icu.yankiinsel.icu.Model.Gender;
 import com.icu.yankiinsel.icu.Model.User;
+import com.icu.yankiinsel.icu.NotificationUtils;
 import com.icu.yankiinsel.icu.R;
 import com.icu.yankiinsel.icu.Tasks.FetchUserInfo;
 import com.icu.yankiinsel.icu.Utils;
@@ -89,5 +90,9 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void testNotification(View view) {
+        NotificationUtils.remindUserNewMessages(this);
     }
 }
