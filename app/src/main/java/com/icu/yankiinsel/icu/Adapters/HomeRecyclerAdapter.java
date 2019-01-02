@@ -1,6 +1,7 @@
 package com.icu.yankiinsel.icu.Adapters;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,11 +26,14 @@ import java.util.List;
 import static com.icu.yankiinsel.icu.Utils.dislikedUserSet;
 
 public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHolder>  {
-    private List<User> myDataset;
+    public List<User> myDataset;
     private String myUsers;
+    private Cursor mCursor;
 
-    public HomeRecyclerAdapter() {
+    public HomeRecyclerAdapter(Cursor cursor) {
+
         myDataset = new ArrayList<>();
+        mCursor = cursor;
     }
 
     @Override
@@ -40,15 +44,20 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHo
         boolean shouldAttachToParentImmediately = false;
         View view = inflater.inflate(layoutIdForListItem, parent, shouldAttachToParentImmediately);
         HomeRecyclerViewHolder viewHolder = new HomeRecyclerViewHolder(view);
+
+
+        while(mCursor.moveToNext()) {
+            User usr = User.populatePerson(mCursor);
+            myDataset.add(usr);
+        }
+
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(HomeRecyclerViewHolder holder, int position) {
-
-        holder.bind(myDataset.get(position), position, HomeRecyclerAdapter.this);
+            holder.bind(myDataset.get(position), position, HomeRecyclerAdapter.this);
     }
-
 
     @Override
     public int getItemCount() {
@@ -74,7 +83,8 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHo
     }
 
     public void formNewDataset(User[] users) {
-        myDataset.clear();
+
+        myDataset = new ArrayList<>();
         myDataset.addAll(Arrays.asList(users));
         Iterator<User> iterator = myDataset.iterator();
         while(iterator.hasNext())

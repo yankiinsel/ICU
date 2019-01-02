@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import android.os.Build;
+import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.icu.yankiinsel.icu.NotificationUtils;
 import com.icu.yankiinsel.icu.R;
 import com.icu.yankiinsel.icu.ReminderUtilities;
 import com.icu.yankiinsel.icu.Tasks.FetchUserInfo;
+import com.icu.yankiinsel.icu.UserContract;
 import com.icu.yankiinsel.icu.Utils;
 
 import java.util.ArrayList;
@@ -62,9 +64,17 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mAdapter = new HomeRecyclerAdapter();
 
-        FetchUserInfo task = new FetchUserInfo((HomeRecyclerAdapter)mAdapter, preferences);
+        Cursor cur = getContentResolver().query(UserContract.UserEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+
+
+        mAdapter = new HomeRecyclerAdapter(cur);
+
+        FetchUserInfo task = new FetchUserInfo((HomeRecyclerAdapter)mAdapter, preferences, this);
         task.execute();
 
         mRecyclerView.setAdapter(mAdapter);

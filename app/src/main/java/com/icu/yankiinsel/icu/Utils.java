@@ -22,11 +22,13 @@ public class Utils {
     static
     {
         userSet = new ArrayList<>();
-        setExampleUsers();
+        //setExampleUsers();
         messageSet = new ArrayList<>();
         likedUserSet = new ArrayList<>();
-        likedUserSet.add(new User("Manolya", "Elmas", 32, Gender.FEMALE, "Kadikoy", "SDAFHDUFIN"));
+
+        likedUserSet.add(new User("Manolya", "Elmas", 32, "Female", "Kadikoy", "SDAFHDUFIN"));
         likedUserSet.get(0).imageName = "girl11";
+
         dislikedUserSet = new ArrayList<>();
     }
 
@@ -40,25 +42,7 @@ public class Utils {
         return null;
     }
 
-    private static void setExampleUsers()
-    {
-        User user0 = new User("Mahmut", "Gulbayir", 27, Gender.MALE, "Sariyer", "WEOJNFDLS");
-        User user1 = new User("Mihriban", "Kocabiyik", 32, Gender.FEMALE, "Kadikoy", "SDAFHDUFIN");
-        User user2 = new User("Mefkure", "Cambaz", 24, Gender.FEMALE, "Besiktas", "jfhihqjkSD");
 
-        user0.imageName = "man1";
-        user1.imageName = "girl1";
-        user2.imageName = "girl2";
-
-        Collections.addAll(user0.interests, "Movies", "Video Games", "Music");
-        Collections.addAll(user1.interests, "Movies", "Video Games", "Music");
-        Collections.addAll(user2.interests, "Travel", "Books", "Food");
-
-
-        userSet.add(user0);
-        userSet.add(user1);
-        userSet.add(user2);
-    }
 
     public static List<Message> getExampleMessages()
     {

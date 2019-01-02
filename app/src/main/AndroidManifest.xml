@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.icu.yankiinsel.icu">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Activities.LoginActivity"
-                  android:theme="@style/NoActionBar">
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -44,6 +45,12 @@
             </intent-filter>
         </service>
 
+
+        <provider
+            android:name=".UserProvider"
+            android:authorities="com.icu.yankiinsel.icu"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>

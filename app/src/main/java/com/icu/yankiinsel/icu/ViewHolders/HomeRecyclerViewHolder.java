@@ -91,7 +91,6 @@ public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
                 TextView text = view.findViewById(android.R.id.message);
                 text.setTextColor(context.getResources().getColor(R.color.white));
                 toast.show();
-
             }
         });
     }
