@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.icu.yankiinsel.icu.NotificationUtils;
 import com.icu.yankiinsel.icu.R;
 
 public class LoginActivity  extends AppCompatActivity {
@@ -37,5 +38,13 @@ public class LoginActivity  extends AppCompatActivity {
             }
         });
     }
+
+    public void testMessageNotification(View view) {
+        NotificationUtils.remindUserNewMessages(this);
+    }
+    public void testMatchesNotification(View view) {
+        NotificationUtils.remindUserNewMatches(this);
+    }
+
 
 }

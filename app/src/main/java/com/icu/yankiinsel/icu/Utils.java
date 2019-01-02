@@ -25,6 +25,8 @@ public class Utils {
         setExampleUsers();
         messageSet = new ArrayList<>();
         likedUserSet = new ArrayList<>();
+        likedUserSet.add(new User("Manolya", "Elmas", 32, Gender.FEMALE, "Kadikoy", "SDAFHDUFIN"));
+        likedUserSet.get(0).imageName = "girl11";
         dislikedUserSet = new ArrayList<>();
     }
 

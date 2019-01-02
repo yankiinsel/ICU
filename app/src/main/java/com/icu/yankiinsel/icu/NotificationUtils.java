@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.icu.yankiinsel.icu.Activities.HomeActivity;
+import com.icu.yankiinsel.icu.Activities.MatchesActivity;
 import com.icu.yankiinsel.icu.Activities.MessageListActivity;
 
 public class NotificationUtils {
@@ -28,7 +29,7 @@ public class NotificationUtils {
     private static final int MATCHES_REMINDER_PENDING_INTENT_ID = 3417;
 
     private static PendingIntent matchesIntent(Context context) {
-        Intent startActivityIntent = new Intent(context, HomeActivity.class);
+        Intent startActivityIntent = new Intent(context, MatchesActivity.class);
         return PendingIntent.getActivity(
                 context,
                 MATCHES_REMINDER_PENDING_INTENT_ID,

@@ -24,4 +24,8 @@
     <string name="new_messages_title">Yeni Mesajlar!</string>
     <string name="new_matches">Yeni eşleşmelerin var!</string>
     <string name="new_messages">Eşleşmelerinden yeni mesajlar var!!</string>
+
+
+    <string name="phone_charging">Telefonunuz şarj oluyor.</string>
+    <string name="phone_unplugged">Telefonunuzun şarj bağlantısı kesildi.</string>
 </resources>

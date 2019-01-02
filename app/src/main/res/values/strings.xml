@@ -25,6 +25,9 @@
     <string name="new_matches">You have some new matches in your area!</string>
     <string name="new_messages">You have new messages from your matches!</string>
 
+    <string name="phone_charging">Phone is now charging</string>
+    <string name="phone_unplugged">Phone is now unplugged</string>
+
 
 
 </resources>
