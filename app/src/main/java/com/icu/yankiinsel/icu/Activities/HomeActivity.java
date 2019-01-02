@@ -19,6 +19,7 @@ import com.icu.yankiinsel.icu.Model.Gender;
 import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.NotificationUtils;
 import com.icu.yankiinsel.icu.R;
+import com.icu.yankiinsel.icu.ReminderUtilities;
 import com.icu.yankiinsel.icu.Tasks.FetchUserInfo;
 import com.icu.yankiinsel.icu.Utils;
 
@@ -35,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ReminderUtilities.scheduleMessageReminder(this);
         setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 

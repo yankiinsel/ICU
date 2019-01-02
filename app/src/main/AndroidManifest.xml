@@ -17,6 +17,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
             </intent-filter>
 
         </activity>
@@ -30,6 +31,12 @@
             android:name="ReminderIntentService"
             android:exported="false">
         </service>
+
+        <service
+            android:name="ICUFirebaseJobService"
+            android:exported="false">
+        </service>
+
     </application>
 
 </manifest>
