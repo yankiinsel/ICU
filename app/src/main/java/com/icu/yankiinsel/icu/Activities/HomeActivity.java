@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
+import com.icu.yankiinsel.icu.ICUIntentService;
 import com.icu.yankiinsel.icu.Model.Gender;
 import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.NotificationUtils;
@@ -76,6 +77,8 @@ public class HomeActivity extends AppCompatActivity {
 
         FetchUserInfo task = new FetchUserInfo((HomeRecyclerAdapter)mAdapter, preferences, this);
         task.execute();
+
+        //updateUsers();
 
         mRecyclerView.setAdapter(mAdapter);
 
@@ -156,6 +159,11 @@ public class HomeActivity extends AppCompatActivity {
             boolean isCharging = (action.equals(Intent.ACTION_POWER_CONNECTED));
             showCharging(isCharging);
         }
+    }
+
+    private void updateUsers() {
+        Intent intent = new Intent(this, ICUIntentService.class);
+        this.startService(intent);
     }
 
 }

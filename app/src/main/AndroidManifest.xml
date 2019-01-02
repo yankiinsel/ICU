@@ -19,38 +19,43 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Activities.HomeActivity" />
+        <activity
+            android:name=".Activities.ProfileActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".Activities.PreferencesActivity"
+            android:label="@string/action_preferences"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activities.MatchesActivity"
+            android:label="@string/action_matches" />
+        <activity
+            android:name=".Activities.MessageListActivity"
+            android:label="@string/messages" />
 
+        <service
+            android:name=".ReminderIntentService"
+            android:exported="false"></service>
+
+        <service
+            android:name=".ICUFirebaseJobService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
             </intent-filter>
-
-        </activity>
-        <activity android:name=".Activities.HomeActivity"/>
-        <activity android:label="@string/app_name" android:name=".Activities.ProfileActivity"/>
-        <activity android:label="@string/action_preferences" android:name=".Activities.PreferencesActivity" android:windowSoftInputMode="adjustResize" />
-        <activity android:label="@string/action_matches" android:name=".Activities.MatchesActivity" />
-        <activity android:label="@string/messages" android:name=".Activities.MessageListActivity" />
-
-        <service
-            android:name="ReminderIntentService"
-            android:exported="false">
         </service>
-
-        <service
-            android:name="ICUFirebaseJobService"
-            android:exported="true"
-            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
-            <intent-filter>
-                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
-            </intent-filter>
-        </service>
-
 
         <provider
             android:name=".UserProvider"
             android:authorities="com.icu.yankiinsel.icu"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
+
+        <service
+            android:name=".ICUIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
