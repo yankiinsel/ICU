@@ -26,10 +26,16 @@ public class Utils {
         messageSet = new ArrayList<>();
         likedUserSet = new ArrayList<>();
 
-        likedUserSet.add(new User("Manolya", "Elmas", 32, "Female", "Kadikoy", "SDAFHDUFIN"));
+
+        likedUserSet.add(new User("Manolya", "Elmas", 27, "Female", "Sariyer", "SKDFLNK"));
         likedUserSet.get(0).imageName = "girl11";
 
         dislikedUserSet = new ArrayList<>();
+
+        User user0 = new User("Mahmut", "Gulbayir", 32, "Male", "Kadikoy", "SDAFHDUFIN");
+        Collections.addAll(user0.interests, "Movies", "Video Games", "Music");
+        user0.imageName = "man1";
+        userSet.add(user0);
     }
 
     public static void displayRoundImageFromUrl(Context context, String url, ImageView imageView)
