@@ -39,7 +39,7 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    public static RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     ChargingBroadcastReceiver mChargingReceiver;
     IntentFilter mChargingIntentFilter;
@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ReminderUtilities.scheduleMessageReminder(this);
+        ReminderUtilities.scheduleMessageReminder(getApplicationContext());
         setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 

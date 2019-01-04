@@ -13,28 +13,18 @@ import com.firebase.jobdispatcher.Trigger;
 
 public class ReminderUtilities {
 
-    private static final int REMINDER_INTERVAL_MINUTES = 1;
-    private static final int REMINDER_INTERVAL_SECONDS = 5;
-    private static final int SYNC_FLEXTIME_SECONDS = REMINDER_INTERVAL_SECONDS;
+    private static final int REMINDER_INTERVAL_SECONDS = 60;
     private static final String REMINDER_JOB_TAG = "message_reminder_tag";
-    private static boolean sInitialized;
     synchronized public static void scheduleMessageReminder(@NonNull final Context context) {
-        if (!sInitialized) {
-            Driver driver = new GooglePlayDriver(context);
-            FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
-            Job constraintReminderJob = dispatcher.newJobBuilder()
-                    .setService(ICUFirebaseJobService.class)
-                    .setTag(REMINDER_JOB_TAG)
-                    .setLifetime(Lifetime.FOREVER)
-                    .setConstraints(Constraint.ON_ANY_NETWORK)
-                    .setRecurring(true)
-                    .setTrigger(Trigger.executionWindow(
-                            REMINDER_INTERVAL_SECONDS,
-                            REMINDER_INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS))
-                    .setReplaceCurrent(true)
-                    .build();
-            dispatcher.schedule(constraintReminderJob);
-            sInitialized = true;
-        }
+
+        Driver driver = new GooglePlayDriver(context);
+        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
+        Job constraintReminderJob = dispatcher.newJobBuilder()
+                .setService(ICUFirebaseJobService.class)
+                .setTag(REMINDER_JOB_TAG)
+                .setTrigger(Trigger.executionWindow(0, REMINDER_INTERVAL_SECONDS))
+                .build();
+        dispatcher.mustSchedule(constraintReminderJob);
+
     }
 }

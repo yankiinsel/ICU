@@ -16,6 +16,7 @@ public class ICUFirebaseJobService  extends JobService{
                 return null;
             }
             protected void onPostExecute(Object o) {
+                ReminderUtilities.scheduleMessageReminder(getApplicationContext());
                 jobFinished(jobParameters, false);
             }
         };
