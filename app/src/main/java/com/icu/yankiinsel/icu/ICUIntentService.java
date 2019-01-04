@@ -9,10 +9,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.icu.yankiinsel.icu.Activities.HomeActivity;
 import com.icu.yankiinsel.icu.Adapters.HomeRecyclerAdapter;
 import com.icu.yankiinsel.icu.Model.User;
 
@@ -31,13 +34,14 @@ public class ICUIntentService extends IntentService {
     HomeRecyclerAdapter mAdapter;
     SharedPreferences mPreferences;
     Context mContext;
+    public static String userJsonStr = null;
 
     public ICUIntentService() {
         super("ICUIntentService");
-        mContext = getApplicationContext();
+        mContext = getBaseContext();
+        mAdapter = (HomeRecyclerAdapter)HomeActivity.mAdapter;
 
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
-        mResolver = mContext.getContentResolver();
+        mResolver = HomeActivity.contentResolver;
     }
     public long addUser(String name, String surname, int age, int genderId, String location, String image_string){
 
@@ -74,12 +78,11 @@ public class ICUIntentService extends IntentService {
 
         HttpURLConnection urlConnection   = null;
         BufferedReader reader          = null;
-        String userJsonStr = null;
 
-        String genderPref= mPreferences.getString("gender", "");
-        String locationPref = mPreferences.getString("location","");
-        String minAgePref = mPreferences.getString("minAge","");
-        String maxAgePref = mPreferences.getString("maxAge","");
+        String genderPref= intent.getExtras().getString("gender");
+        String locationPref = intent.getExtras().getString("location");
+        String minAgePref = intent.getExtras().getString("minAge");
+        String maxAgePref = intent.getExtras().getString("maxAge");
 
         final String BASE_URL = "https://ICU-api.now.sh/user?";
         final String genderParam = "gender";
@@ -165,8 +168,8 @@ public class ICUIntentService extends IntentService {
         mAdapter.myDataset.clear();
         mAdapter.myDataset = Arrays.asList(users);
 
-        mAdapter.setUserData(userJsonStr);
-
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(mAdapter);
         return;
     }
 

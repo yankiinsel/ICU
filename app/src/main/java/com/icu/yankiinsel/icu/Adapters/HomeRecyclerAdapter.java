@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.gson.Gson;
+import com.icu.yankiinsel.icu.ICUIntentService;
 import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.R;
 import com.icu.yankiinsel.icu.Utils;
@@ -25,7 +26,7 @@ import java.util.List;
 
 import static com.icu.yankiinsel.icu.Utils.dislikedUserSet;
 
-public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHolder>  {
+public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHolder> implements Runnable  {
     public List<User> myDataset;
     private String myUsers;
     private Cursor mCursor;
@@ -64,13 +65,12 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerViewHo
         return myDataset.size();
     }
 
-
-    public void setUserData(String userData) {
-        myUsers = userData;
+    @Override
+    public void run() {
         try {
 
             Gson gson = new Gson();
-            User[] users = gson.fromJson(userData, User[].class);
+            User[] users = gson.fromJson(ICUIntentService.userJsonStr, User[].class);
 
             //myDataset = Arrays.asList(users);
 

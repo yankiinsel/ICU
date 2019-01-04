@@ -1,6 +1,7 @@
 package com.icu.yankiinsel.icu.Activities;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -28,7 +29,6 @@ import com.icu.yankiinsel.icu.Model.User;
 import com.icu.yankiinsel.icu.NotificationUtils;
 import com.icu.yankiinsel.icu.R;
 import com.icu.yankiinsel.icu.ReminderUtilities;
-import com.icu.yankiinsel.icu.Tasks.FetchUserInfo;
 import com.icu.yankiinsel.icu.UserContract;
 import com.icu.yankiinsel.icu.Utils;
 
@@ -43,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     ChargingBroadcastReceiver mChargingReceiver;
     IntentFilter mChargingIntentFilter;
+    public static ContentResolver contentResolver;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +66,8 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        contentResolver = getContentResolver();
         Cursor cur = getContentResolver().query(UserContract.UserEntry.CONTENT_URI,
                 null,
                 null,
@@ -75,10 +77,10 @@ public class HomeActivity extends AppCompatActivity {
 
         mAdapter = new HomeRecyclerAdapter(cur);
 
-        FetchUserInfo task = new FetchUserInfo((HomeRecyclerAdapter)mAdapter, preferences, this);
-        task.execute();
+//        FetchUserInfo task = new FetchUserInfo((HomeRecyclerAdapter)mAdapter, preferences, this);
+//        task.execute();
 
-        //updateUsers();
+        updateUsers();
 
         mRecyclerView.setAdapter(mAdapter);
 
@@ -162,7 +164,16 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void updateUsers() {
+
+        String genderPref= preferences.getString("gender", "");
+        String locationPref = preferences.getString("location","");
+        String minAgePref = preferences.getString("minAge","");
+        String maxAgePref = preferences.getString("maxAge","");
         Intent intent = new Intent(this, ICUIntentService.class);
+        intent.putExtra("gender", genderPref);
+        intent.putExtra("location", locationPref);
+        intent.putExtra("minAge", minAgePref);
+        intent.putExtra("maxAge", maxAgePref);
         this.startService(intent);
     }
 
